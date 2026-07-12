@@ -4,6 +4,13 @@ Chatrix is a real-time messaging web application featuring a sleek glassmorphic 
 
 ---
 
+## 🌐 Live Deployments
+
+* **Frontend (Vercel):** [https://chatrix-ss.vercel.app/](https://chatrix-ss.vercel.app/)
+* **Backend API (Render):** [https://chatrix-yooz.onrender.com/](https://chatrix-yooz.onrender.com/)
+
+---
+
 ## 🚀 Features
 
 - **Real-Time Communication**: Seamless chat message delivery without page reloads using Socket.io.
