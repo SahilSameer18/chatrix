@@ -15,7 +15,6 @@ export const ChatProvider = ({ children }) => {
 
   // Helper to connect and setup listeners
   const connectSocket = (userVal) => {
-    console.log('connectSocket called with username:', userVal, 'socket.connected:', socket.connected);
     if (!socket.connected) {
       socket.connect();
     } else {
@@ -40,15 +39,12 @@ export const ChatProvider = ({ children }) => {
   // Mount/Dismount socket listeners when socket state changes
   useEffect(() => {
     const handleConnect = () => {
-      console.log('Socket handleConnect triggered. username in state:', username);
       setSocketConnected(true);
       if (username) {
-        console.log('Emitting join event for:', username);
         socket.emit('join', username);
       }
     };
     const handleDisconnect = () => {
-      console.log('Socket handleDisconnect triggered');
       setSocketConnected(false);
     };
 
@@ -57,7 +53,6 @@ export const ChatProvider = ({ children }) => {
     };
 
     const handleOnlineUsers = (users) => {
-      console.log('Received online_users list from server:', users);
       setOnlineUsers(users);
     };
 
