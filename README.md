@@ -83,7 +83,7 @@ flowchart TB
     subgraph Client["Client (React App)"]
         direction TB
 
-        UI["UI View Layer (App.jsx)"]
+        UI["Presentation Layer (App.jsx)"]
         Login["Login Screen"]
         Dash["Chat Dashboard"]
         Sidebar["Sidebar (Online Users)"]
