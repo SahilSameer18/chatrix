@@ -69,63 +69,80 @@ chatrix/
 
 ```mermaid
 flowchart TB
-    %% Nodes
-    subgraph Client ["Client (React App)"]
+
+    %% ==========================
+    %% Client
+    %% ==========================
+    subgraph Client["Client (React App)"]
         direction TB
+
         UI["UI View Layer (App.jsx)"]
         Login["Login Screen"]
         Dash["Chat Dashboard"]
-        Sidebar["Sidebar (Online list)"]
+        Sidebar["Sidebar (Online Users)"]
         ChatArea["Chat Area (History & Input)"]
-        
+
         UI --> Login
         UI --> Dash
         Dash --> Sidebar
         Dash --> ChatArea
-        
-        subgraph Context ["State Management"]
+
+        subgraph Context["State Management"]
             CC["ChatContext.jsx (useChat)"]
-            SS["socketService.js (Socket.io)"]
+            SS["socketService.js (Socket.IO Client)"]
             APIs["messages.js (Axios Client)"]
         end
-        
-        Login & Sidebar & ChatArea <--> CC
-        CC <--> SS & APIs
+
+        Login <--> CC
+        Sidebar <--> CC
+        ChatArea <--> CC
+
+        CC <--> SS
+        CC <--> APIs
     end
 
-    subgraph Backend ["Backend (Express & Socket.io)"]
+    %% ==========================
+    %% Backend
+    %% ==========================
+    subgraph Backend["Backend (Express + Socket.IO)"]
         direction TB
-        AppJS["app.js (Main Application)"]
-        Routes["Express Routes (api/auth, api/messages)"]
-        Sockets["Socket.io Handlers (join, disconnect, send_message, typing)"]
-        
+
+        AppJS["app.js"]
+        Routes["REST API Routes (/api/auth, /api/messages)"]
+        Sockets["Socket.IO Handlers<br/>(join, send_message, typing, disconnect)"]
+
         AppJS --> Routes
         AppJS --> Sockets
     end
 
-    subgraph Database ["Database Layer"]
-        DB["MongoDB (Mongoose ORM)"]
+    %% ==========================
+    %% Database
+    %% ==========================
+    subgraph Database["Database Layer"]
+        DB["MongoDB (Mongoose)"]
     end
 
+    %% ==========================
     %% Connections
-    APIs <-->|HTTP REST APIs| Routes
-    SS <-->|WebSockets (ws://)| Sockets
-    Routes <-->|Mongoose Schemas| DB
-    Sockets <-->|Mongoose Schemas| DB
-    
-    %% Styling
-    classDef client fill:#4f46e5,stroke:#818cf8,color:#fff;
-    classDef server fill:#0f172a,stroke:#334155,color:#fff;
-    classDef db fill:#064e3b,stroke:#059669,color:#fff;
-    classDef context fill:#1e1b4b,stroke:#4338ca,color:#fff;
-    
-    class Client,UI,Login,Dash,Sidebar,ChatArea client;
-    class Backend,AppJS,Routes,Sockets server;
-    class Database,DB db;
-    class Context,CC,SS,APIs context;
-```
+    %% ==========================
+    APIs <-->|HTTP REST| Routes
+    SS <-->|Socket.IO| Sockets
+    Routes --> DB
+    Sockets --> DB
 
----
+    %% ==========================
+    %% Styles
+    %% ==========================
+    classDef client fill:#4f46e5,stroke:#818cf8,color:#ffffff;
+    classDef context fill:#312e81,stroke:#6366f1,color:#ffffff;
+    classDef server fill:#0f172a,stroke:#334155,color:#ffffff;
+    classDef database fill:#065f46,stroke:#10b981,color:#ffffff;
+
+    class UI,Login,Dash,Sidebar,ChatArea client;
+    class CC,SS,APIs context;
+    class AppJS,Routes,Sockets server;
+    class DB database;
+```
 
 ## ⚙️ Environment Variables
 
