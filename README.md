@@ -1,6 +1,6 @@
 # Chatrix 💬
 
-Chatrix is a premium, real-time messaging web application featuring a sleek glassmorphic user interface. It is built using Node.js, Express, and Socket.io on the backend, and React with Tailwind CSS v4 on the frontend. The application features dummy session login, live online user lists, real-time message broadcasting, typing indicators, and a persistent chat history stored in MongoDB.
+Chatrix is a real-time messaging web application featuring a sleek glassmorphic user interface. It is built using Node.js, Express, and Socket.io on the backend, and React with Tailwind CSS v4 on the frontend. The application features dummy session login, live online user lists, real-time message broadcasting, typing indicators, and a persistent chat history stored in MongoDB.
 
 ---
 
@@ -10,7 +10,7 @@ Chatrix is a premium, real-time messaging web application featuring a sleek glas
 - **Session Authentication**: Fast, username-based login session stored locally to automatically resume on return.
 - **Live User Presence**: Sidebar displaying all online users with active indicators that sync and broadcast automatically when users join or disconnect.
 - **Typing Indicators**: Visual cues (e.g. *"Alice and Bob are typing..."*) shown when other users are active in the input box.
-- **Premium Styling**: Sleek glassmorphic card layout, dark mode aesthetic (`bg-slate-950`), custom scroll bars, and gradient text animations built using Tailwind CSS v4.
+- **Glassmorphic Styling**: Sleek card layout, dark mode aesthetic (`bg-slate-950`), custom scroll bars, and gradient text animations built using Tailwind CSS v4.
 - **Persistent History**: Chronological chat history saved in MongoDB and loaded automatically upon login.
 
 ---
@@ -150,7 +150,7 @@ flowchart TB
 Create a `.env` file inside the `server/` directory:
 ```env
 PORT=3000
-MONGODB_URI=mongodb://127.0.0.1:27017/chat-app
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.mongodb.net/chat-app?retryWrites=true&w=majority
 CORS_ORIGIN=http://localhost:5173,http://localhost:5174,http://localhost:5175
 ```
 
@@ -195,7 +195,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed and a running instan
    ```bash
    npm install
    ```
-3. Start the frontend developer server (Vite):
+3. Start the frontend development server (Vite):
    ```bash
    npm run dev
    ```
@@ -209,7 +209,7 @@ Make sure you have [Node.js](https://nodejs.org/) installed and a running instan
    All state logic (Socket listeners, connection indicators, online users, active session triggers, typing timeouts, and history arrays) is consolidated in `ChatContext.jsx`. This isolates application state from render views, resulting in a cleaner UI layout and easier logic testing.
    
 2. **Modular View Component Structure**:
-   `App.jsx` acts purely as a shell containing conditional routes (Login vs. Dashboard). Layout grids, sidebars, typing indicators, and individual message boxes are broken out into separate files inside `/client/src/components` to enforce readablity and maintainability.
+   `App.jsx` acts purely as a shell containing conditional routes (Login vs. Dashboard). Layout grids, sidebars, typing indicators, and individual message boxes are broken out into separate files inside `/client/src/components` to enforce readability and maintainability.
 
 3. **Robust WebSocket Lifecycle Hook**:
    Socket listener binds are handled inside a single React `useEffect`. When connections drop or the server undergoes hot-reloading:
@@ -225,4 +225,10 @@ Make sure you have [Node.js](https://nodejs.org/) installed and a running instan
 
 - **Session Security**: Username authentication is a dummy login to quickly verify user identity. Password check is assumed out of scope for this design version.
 - **Single Room Context**: All users register under the same `#general-chat` channel. Future room creations can be supported by adjusting the `join` socket schema.
-- **Local MongoDB Fallback**: The server is pre-configured to look for a local MongoDB instance. If none is found, it will throw a connection error. Please make sure MongoDB is running before launching the server.
+- **MongoDB Connection**: The server connects to MongoDB using the `MONGODB_URI` environment variable. Ensure your database (local or Atlas cluster) is running and accessible before launching the server.
+
+---
+
+## 👤 Developer
+
+*   **Sahil Sameer** - [GitHub](https://github.com/SahilSameer18)

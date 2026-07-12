@@ -16,22 +16,22 @@ const LoginView = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-950 text-slate-100 px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-bg text-text-primary px-4 relative overflow-hidden">
       {/* Background blobs for depth */}
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl pointer-events-none"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="w-full max-w-md p-8 rounded-2xl glass-card z-10">
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-extrabold tracking-tight font-display bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Chatrix
           </h1>
-          <p className="mt-2 text-sm text-slate-400">Enter a username to join the chat</p>
+          <p className="mt-2 text-sm text-text-secondary">Enter a username to join the chat</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label htmlFor="username" className="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+            <label htmlFor="username" className="block text-xs font-semibold text-text-muted uppercase tracking-wider mb-2">
               Username
             </label>
             <input
@@ -47,7 +47,7 @@ const LoginView = () => {
           </div>
 
           {error && (
-            <div className="p-3 rounded-lg bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs text-center">
+            <div className="p-3 rounded-lg bg-danger/10 border border-danger/20 text-danger text-xs text-center">
               {error}
             </div>
           )}

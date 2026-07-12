@@ -83,25 +83,25 @@ const ChatArea = ({ onToggleSidebar }) => {
   };
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-slate-950 text-slate-100 overflow-hidden">
+    <div className="flex-1 flex flex-col h-full bg-bg text-text-primary overflow-hidden">
       {/* Chat Area Header */}
-      <div className="p-4 border-b border-slate-800/80 bg-slate-900/40 flex items-center justify-between">
+      <div className="p-4 border-b border-white/5 bg-surface/40 flex items-center justify-between">
         <div className="flex items-center space-x-3">
           <button
             onClick={onToggleSidebar}
-            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 md:hidden transition-colors cursor-pointer"
+            className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface md:hidden transition-colors cursor-pointer"
           >
             <FiMenu className="text-xl" />
           </button>
           
           <div>
-            <h2 className="font-bold text-slate-100 flex items-center space-x-2">
-              <span className="text-violet-400">#</span>
+            <h2 className="font-bold text-text-primary font-display flex items-center space-x-2">
+              <span className="text-primary">#</span>
               <span>general-chat</span>
             </h2>
             <div className="h-4 mt-0.5">
               {typingText && (
-                <p className="text-xs text-violet-400/90 italic animate-pulse">
+                <p className="text-xs text-primary/90 italic animate-pulse">
                   {typingText}
                 </p>
               )}
@@ -121,7 +121,7 @@ const ChatArea = ({ onToggleSidebar }) => {
             >
               {/* Sender name for received messages */}
               {!isOwnMessage && (
-                <span className="text-xs font-semibold text-slate-400 mb-1 ml-1">
+                <span className="text-xs font-semibold text-text-secondary mb-1 ml-1">
                   {msg.username}
                 </span>
               )}
@@ -130,12 +130,12 @@ const ChatArea = ({ onToggleSidebar }) => {
                 <div
                   className={`px-4 py-2.5 rounded-2xl text-sm ${
                     isOwnMessage
-                      ? 'bg-gradient-to-r from-violet-600 to-indigo-600 text-white rounded-tr-none shadow-md shadow-indigo-600/10'
-                      : 'bg-slate-900 border border-slate-800/80 text-slate-200 rounded-tl-none'
+                      ? 'bg-gradient-to-r from-primary to-secondary text-bg rounded-tr-none font-bold shadow-md shadow-primary/10'
+                      : 'bg-surface border border-white/5 text-text-primary rounded-tl-none'
                   }`}
                 >
                   <p className="whitespace-pre-wrap break-words">{msg.text}</p>
-                  <div className={`text-[10px] mt-1 text-right ${isOwnMessage ? 'text-violet-200' : 'text-slate-500'}`}>
+                  <div className={`text-[10px] mt-1 text-right ${isOwnMessage ? 'text-bg/75' : 'text-text-muted'}`}>
                     {formatTime(msg.timestamp)}
                   </div>
                 </div>
@@ -145,8 +145,8 @@ const ChatArea = ({ onToggleSidebar }) => {
         })}
         
         {messages.length === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-slate-500 space-y-3">
-            <div className="p-4 bg-slate-900 border border-slate-800 rounded-full text-2xl text-slate-400">
+          <div className="flex flex-col items-center justify-center h-full text-text-secondary space-y-3">
+            <div className="p-4 bg-surface border border-white/5 rounded-full text-2xl text-text-secondary">
               <FiMessageSquare />
             </div>
             <p className="text-sm">No messages yet. Send a message to start the conversation!</p>
@@ -156,7 +156,7 @@ const ChatArea = ({ onToggleSidebar }) => {
       </div>
 
       {/* Input Console */}
-      <div className="p-4 border-t border-slate-800/80 bg-slate-900/20">
+      <div className="p-4 border-t border-white/5 bg-surface/20">
         <form onSubmit={handleSend} className="flex items-center space-x-2">
           <input
             type="text"
