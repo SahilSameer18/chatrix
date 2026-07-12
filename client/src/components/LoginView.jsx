@@ -21,7 +21,7 @@ const LoginView = () => {
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-violet-600/20 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="w-full max-w-md p-8 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-2xl z-10">
+      <div className="w-full max-w-md p-8 rounded-2xl glass-card z-10">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-violet-400 to-indigo-400 bg-clip-text text-transparent">
             Chatrix
@@ -42,7 +42,7 @@ const LoginView = () => {
               value={inputVal}
               onChange={(e) => setInputVal(e.target.value)}
               placeholder="e.g. Alice"
-              className="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-violet-500 focus:ring-2 focus:ring-violet-500/20 outline-none text-slate-100 placeholder-slate-500 transition-all"
+              className="input-base"
             />
           </div>
 
@@ -55,7 +55,7 @@ const LoginView = () => {
           <button
             type="submit"
             disabled={isLoading || !inputVal.trim()}
-            className="w-full py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 disabled:opacity-50 text-white font-medium shadow-lg shadow-indigo-600/20 transition-all cursor-pointer text-center block"
+            className="w-full btn-primary block"
           >
             {isLoading ? 'Connecting...' : 'Join Chat'}
           </button>
@@ -66,3 +66,6 @@ const LoginView = () => {
 };
 
 export default LoginView;
+
+
+

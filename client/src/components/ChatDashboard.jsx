@@ -1,17 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Sidebar from './Sidebar';
 import ChatArea from './ChatArea';
 
 const ChatDashboard = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
   return (
-    <div className="flex flex-col md:flex-row h-screen w-screen bg-slate-950 overflow-hidden">
-      {/* Sidebar - renders on the left, collapsible or stacked depending on viewport */}
-      <Sidebar />
+    <div className="flex h-screen w-screen bg-slate-950 overflow-hidden relative">
+      {/* Sidebar drawer and mobile click overlay */}
+      <Sidebar isOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
       
-      {/* Chat Area - renders general logs and messaging interface */}
-      <ChatArea />
+      {/* General messaging console */}
+      <ChatArea onToggleSidebar={() => setIsSidebarOpen(true)} />
     </div>
   );
 };
 
 export default ChatDashboard;
+
+

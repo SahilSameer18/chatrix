@@ -1,1 +1,32 @@
 @import "tailwindcss";
+
+.glass-card {
+  @apply bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-2xl;
+}
+
+.input-base {
+  @apply w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none text-slate-100 placeholder-slate-500 transition-all;
+}
+
+.btn-primary {
+  @apply px-4 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 disabled:opacity-50 text-white font-medium shadow-md shadow-indigo-600/15 transition-all cursor-pointer text-center;
+}
+
+.avatar-base {
+  @apply w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs uppercase border border-slate-700 bg-slate-800 text-slate-300;
+}
+
+/* Custom thin scrollbar utility */
+.scrollbar-custom::-webkit-scrollbar {
+  width: 6px;
+}
+.scrollbar-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.1);
+  border-radius: 9999px;
+}
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.25);
+}

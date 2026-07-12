@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useChat } from '../context/ChatContext';
-import { FiSend, FiMessageSquare } from 'react-icons/fi';
+import { FiSend, FiMessageSquare, FiMenu } from 'react-icons/fi';
 
-const ChatArea = () => {
+const ChatArea = ({ onToggleSidebar }) => {
   const { username, messages, typingUsers, sendMessage, emitTyping } = useChat();
   const [text, setText] = useState('');
   const [isCurrentlyTyping, setIsCurrentlyTyping] = useState(false);
@@ -86,23 +86,32 @@ const ChatArea = () => {
     <div className="flex-1 flex flex-col h-full bg-slate-950 text-slate-100 overflow-hidden">
       {/* Chat Area Header */}
       <div className="p-4 border-b border-slate-800/80 bg-slate-900/40 flex items-center justify-between">
-        <div>
-          <h2 className="font-bold text-slate-100 flex items-center space-x-2">
-            <span className="text-violet-400">#</span>
-            <span>general-chat</span>
-          </h2>
-          <div className="h-4 mt-0.5">
-            {typingText && (
-              <p className="text-xs text-violet-400/90 italic animate-pulse">
-                {typingText}
-              </p>
-            )}
+        <div className="flex items-center space-x-3">
+          <button
+            onClick={onToggleSidebar}
+            className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 md:hidden transition-colors cursor-pointer"
+          >
+            <FiMenu className="text-xl" />
+          </button>
+          
+          <div>
+            <h2 className="font-bold text-slate-100 flex items-center space-x-2">
+              <span className="text-violet-400">#</span>
+              <span>general-chat</span>
+            </h2>
+            <div className="h-4 mt-0.5">
+              {typingText && (
+                <p className="text-xs text-violet-400/90 italic animate-pulse">
+                  {typingText}
+                </p>
+              )}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Messages Feed */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-4">
+      <div className="flex-1 overflow-y-auto scrollbar-custom p-4 space-y-4">
         {messages.map((msg, index) => {
           const isOwnMessage = msg.username === username;
           return (
@@ -154,12 +163,12 @@ const ChatArea = () => {
             value={text}
             onChange={handleInputChange}
             placeholder="Type a message..."
-            className="flex-1 px-4 py-3 rounded-xl bg-slate-900 border border-slate-800/85 focus:border-violet-500 focus:ring-1 focus:ring-violet-500 outline-none text-sm text-slate-200 placeholder-slate-500 transition-all"
+            className="flex-1 input-base"
           />
           <button
             type="submit"
             disabled={!text.trim()}
-            className="p-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 disabled:opacity-50 text-white shadow-md shadow-indigo-600/15 transition-all cursor-pointer flex items-center justify-center"
+            className="p-3 btn-primary flex items-center justify-center"
           >
             <FiSend className="text-base" />
           </button>
