@@ -16,15 +16,14 @@ export const getMessages = async (req, res) => {
 export const createMessage = async (req, res) => {
   try {
     const { username, text } = req.body;
-    if (!username || !text) {
-      return res.status(400).json({ message: 'Username and text are required' });
+    if (!username?.trim() || !text?.trim() || text.length > 2000) {
+      return res.status(400).json({ message: 'Username and text are required (max 2000 chars)' });
     }
-    const newMessage = await Message.create({ username, text });
     
-    // Broadcast message to all connected clients if socket server is attached
-    if (req.io) {
-      req.io.emit('receive_message', newMessage);
-    }
+    const newMessage = await Message.create({
+      username: username.trim(),
+      text: text.trim(),
+    });
 
     res.status(201).json(newMessage);
   } catch (error) {
