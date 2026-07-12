@@ -9,6 +9,11 @@ import authRoutes from './routes/authRoutes.js';
 import socketHandler from './sockets/index.js';
 import { notFound, errorHandler } from './middleware/errorMiddleware.js';
 
+import dns from 'dns';
+
+//changing dns because of mongodb not connected
+dns.setServers(['1.1.1.1', '8.8.8.8']);
+
 // Load env variables
 dotenv.config();
 
@@ -49,3 +54,4 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+

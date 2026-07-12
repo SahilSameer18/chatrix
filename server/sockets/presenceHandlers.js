@@ -13,7 +13,7 @@ const presenceHandlers = (io, socket, activeUsers) => {
       await User.findOneAndUpdate(
         { username },
         { isOnline: true, lastSeen: new Date() },
-        { upsert: true, new: true }
+        { upsert: true, returnDocument: 'after' }
       );
     } catch (err) {
       console.error('Error updating user presence in DB:', err.message);
